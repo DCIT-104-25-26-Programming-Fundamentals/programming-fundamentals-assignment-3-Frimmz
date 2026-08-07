@@ -74,4 +74,99 @@
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
 
+const readline = require('readline-sync');
 
+function add(a, b) {
+    return a + b;
+}
+
+function subtract(a, b) {
+    return a - b;
+}
+
+function multiply(a, b) {
+    return a * b;
+}
+
+function divide(a, b) {
+    return a / b;
+}
+
+function modulus(a, b) {
+    return a % b;
+}
+
+function exponentiate(a, b) {
+    return a ** b;
+}
+
+function runCalculator() {
+    let running = true;
+
+    while (running) {
+        console.log("\n====================================");
+        console.log("         SIMPLE CALCULATOR");
+        console.log("====================================");
+        console.log("1. Addition");
+        console.log("2. Subtraction");
+        console.log("3. Multiplication");
+        console.log("4. Division");
+        console.log("5. Modulus");
+        console.log("6. Exponentiation");
+        console.log("7. Quit");
+
+        let choice = readline.question("Select an operation (1-7): ");
+
+        if (choice === "7") {
+            console.log("Goodbye!");
+            running = false;
+            break;
+        }
+
+        if (choice !== "1" && choice !== "2" && choice !== "3" && choice !== "4" && choice !== "5" && choice !== "6") {
+            console.log("Invalid option. Please enter a number between 1 and 7.");
+            continue;
+        }
+
+        let num1Str = readline.question("Enter first number : ");
+        let num1 = parseFloat(num1Str);
+
+        let num2Str = readline.question("Enter second number: ");
+        let num2 = parseFloat(num2Str);
+
+        if (isNaN(num1) || isNaN(num2)) {
+            console.log("Error: Please enter valid numbers.");
+            continue;
+        }
+
+        if (choice === "1") {
+            let res = add(num1, num2);
+            console.log("Result: " + num1 + " + " + num2 + " = " + res.toFixed(2));
+        } else if (choice === "2") {
+            let res = subtract(num1, num2);
+            console.log("Result: " + num1 + " - " + num2 + " = " + res.toFixed(2));
+        } else if (choice === "3") {
+            let res = multiply(num1, num2);
+            console.log("Result: " + num1 + " * " + num2 + " = " + res.toFixed(2));
+        } else if (choice === "4") {
+            if (num2 === 0) {
+                console.log("Error: Cannot divide by zero.");
+            } else {
+                let res = divide(num1, num2);
+                console.log("Result: " + num1 + " / " + num2 + " = " + res.toFixed(2));
+            }
+        } else if (choice === "5") {
+            if (num2 === 0) {
+                console.log("Error: Cannot divide by zero.");
+            } else {
+                let res = modulus(num1, num2);
+                console.log("Result: " + num1 + " % " + num2 + " = " + res.toFixed(2));
+            }
+        } else if (choice === "6") {
+            let res = exponentiate(num1, num2);
+            console.log("Result: " + num1 + " ** " + num2 + " = " + res.toFixed(2));
+        }
+    }
+}
+
+runCalculator();
