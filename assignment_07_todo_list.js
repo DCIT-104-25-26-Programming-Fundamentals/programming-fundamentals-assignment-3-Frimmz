@@ -116,7 +116,7 @@ function deleteTask() {
     let indexStr = readline.question("Enter task number to delete: ");
     let index = parseInt(indexStr) - 1;
 
-    if (isNaN(index)  index < 0  index >= tasks.length) {
+    if (isNaN(index) || index < 0 || index >= tasks.length) {
         console.log("Invalid task number.");
         return;
     }
