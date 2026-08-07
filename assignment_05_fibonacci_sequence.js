@@ -54,4 +54,63 @@
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
 
+const readline = require('readline-sync');
 
+// PART A - Print the First N Terms
+function generateFibonacci() {
+    let n = parseInt(readline.question("How many terms? "));
+
+    // Check if input is a valid positive integer
+    if (isNaN(n) || n <= 0) {
+        console.log("Error: Please enter a positive integer.");
+        return;
+    }
+
+    let a = 0;
+    let b = 1;
+    let terms = [];
+
+    for (let i = 0; i < n; i++) {
+        terms.push(a);
+        let temp = a + b;
+        a = b;
+        b = temp;
+    }
+
+    console.log("Fibonacci sequence: " + terms.join(" "));
+}
+
+// PART B - Check if a Number Belongs to the Sequence
+function checkFibonacci() {
+    let num = parseInt(readline.question("Enter a number to check: "));
+
+    if (isNaN(num) || num < 0) {
+        console.log("Error: Please enter a non-negative integer.");
+        return;
+    }
+
+    let a = 0;
+    let b = 1;
+    let isFib = false;
+
+    // Loop through sequence until we hit or pass the number
+    while (a <= num) {
+        if (a === num) {
+            isFib = true;
+            break;
+        }
+        let temp = a + b;
+        a = b;
+        b = temp;
+    }
+
+    if (isFib) {
+        console.log(num + " is a Fibonacci number.");
+    } else {
+        console.log(num + " is NOT a Fibonacci number.");
+    }
+}
+
+// Call functions
+generateFibonacci();
+checkFibonacci();
